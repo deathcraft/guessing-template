@@ -108,14 +108,19 @@
 		public function clearGame():void
 		{
 			clearLevel();
-			removeChild(_backGround);
+			if (_backGround && this.contains(_backGround))
+				removeChild(_backGround);
 			_backGround = null;
-			removeChild(_gt);
+			if (_gt && this.contains(_gt))
+				removeChild(_gt);
 			_gt = null;
-			removeChild(_scoreText);
+			if (_scoreText && this.contains(_scoreText))
+				removeChild(_scoreText);
 			_scoreText = null;
-			removeChild(_lvlText);
+			if (_lvlText && this.contains(_lvlText))
+				removeChild(_lvlText);
 			_lvlText = null;
+			CONFIG::debug { trace("Clearing game");  }
 		}
 		
 		

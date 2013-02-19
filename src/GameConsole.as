@@ -18,8 +18,23 @@
 
 		public function GameConsole()
 		{
+			
+		}
+		
+		public function gameStart():void {
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		public function clearConsole():void {
+			_gameManager.clearGame();
+			removeChild(MovieClip(_gameManager));
+			if (_hud && this.contains(_hud))
+				removeChild(_hud);
+			this.removeEventListener(GameOverEvent.LOSE, endGame);
+			this.removeEventListener(GameOverEvent.WIN, winGame);
+			this.removeEventListener(LevelFinishEvent.LEVEL_END_WIN, nextLevel);
+			this.removeEventListener(LevelFinishEvent.LEVEL_END_LOSE, restartLevel);
 		}
 		
 		private function init(e:Event = null):void  {

@@ -10,6 +10,7 @@ package
 	 */
 	public class Main extends Sprite 
 	{
+		private var gc:GameConsole;
 		
 		public function Main():void 
 		{
@@ -20,7 +21,10 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			addChild(new GameConsole());
+			gc = new GameConsole();
+			addChild(gc);
+			gc.gameStart();
+			gc.clearConsole();
 		}
 		
 	}
