@@ -15,6 +15,13 @@
 		private var _hud:HeartDisplay;
 		private var grBut:GameButton;
 		private var grTxt:GameText;
+		
+		private const lostText:String = "You have lost!";
+		private var wonText:String = "You've won. Your bonus: ";
+		private var playAgainText:String = "Play again";
+		private var totalScoreText:String = "Total score: ";
+		private var playNextLevelText:String = "Play next level";
+		private var lostLifeText:String = "You've lost 1 life!";
 
 		public function GameConsole()
 		{
@@ -63,7 +70,7 @@
 		private function endGame(e:GameOverEvent):void
 		{
 			CONFIG::debug { trace("player lost the game"); }
-			addMessageButton(looseHandler, "You have lost!");
+			addMessageButton(looseHandler, lostText);
 		}
 
 		private function looseHandler(e:Event):void
@@ -78,9 +85,9 @@
 
 		private function winGame(e:GameOverEvent):void
 		{
-			addMessageButton(winHandler, "You've won. Your bonus: "  + Math.round(_gameManager.gameOver() * 0.5), "Play again");
+			addMessageButton(winHandler, wonText  + Math.round(_gameManager.gameOver() * 0.5), playAgainText);
 			CONFIG::debug { trace("player won the game"); }
-			grTxt = new GameText("Total score: " + Math.round(_gameManager.gameOver() * 1.5), true);
+			grTxt = new GameText(totalScoreText + Math.round(_gameManager.gameOver() * 1.5), true);
 			grTxt.x = stage.stageWidth / 2 - grTxt.width / 2;
 			grTxt.y = 280;
 			MovieClip(_gameManager).addChild(grTxt);
@@ -101,7 +108,7 @@
 		{
 			if (_lvl < GameConstants.LEVELS_TOTAL - 1)
 			{
-				addMessageButton(nextLevelHandler, "Play next level");
+				addMessageButton(nextLevelHandler, playNextLevelText);
 			}
 			else
 			{
@@ -120,7 +127,7 @@
 			}
 			else
 			{
-				addMessageButton(loseHandler, "You've lost 1 life!");
+				addMessageButton(loseHandler, lostLifeText);
 			}
 		}
 
