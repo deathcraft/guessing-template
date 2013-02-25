@@ -10,6 +10,11 @@
 		{
 			super(type, bubbles, cancelable, score);
 	    }
+		
+		public override function clone( ):Event
+		{
+			return new GameOverEvent(type, bubbles, cancelable, score);
+		}
 
 	}
 

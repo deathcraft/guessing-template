@@ -20,7 +20,7 @@
 
 		public override function clone( ):Event
 		{
-			return new GameOverEvent(type, bubbles, cancelable, score);
+			return new GameEvent(type, bubbles, cancelable, score);
 		}
 
 		public override function toString( ):String

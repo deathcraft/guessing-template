@@ -4,7 +4,6 @@
 		
 		public static const SHOT_BEGIN:String = "shotBegins";
 		
-		
 		public var evX:int = 0;
 		public var evY:int = 0;
 		
@@ -12,9 +11,13 @@
 			super(type, bubbles, cancelable, score);
 			evX = px;
 			evY = py;
-			
+		}
+		
+		public override function clone( ):Event
+		{
+			return new ShotEvent(type, bubbles, cancelable, score, evX, evY);
 		}
 
+
 	}
-	
 }
